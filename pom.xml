@@ -19,8 +19,8 @@
 		Version de GeoTools à conserver cohérente avec version OpenJDK  
 		https://docs.geotools.org/latest/userguide/build/install/jdk.html
 		-->
-		<geotools.version>30.1</geotools.version>
-		<jacoco.version>0.8.7</jacoco.version>
+		<geotools.version>30.5</geotools.version>
+		<jacoco.version>0.8.12</jacoco.version>
 		<jackson-datatype-jts.version>1.2.10</jackson-datatype-jts.version>
 		<spring-boot-jar-resources.version>1.3</spring-boot-jar-resources.version>
 		<!-- 
@@ -34,7 +34,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
-		<version>3.2.0</version>
+		<version>3.3.4</version>
 		<!-- lookup parent from repository -->
 		<relativePath />
 	</parent>
