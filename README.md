@@ -1,5 +1,7 @@
 # tp-refactoring-graph
 
+**ATTENTION** : Ce dépôt est une **archive correspondant à la version Java du TP**.
+
 ## Description
 
 [tp-refactoring-graph](http://mborne.github.io/cours-patron-conception/annexe/tp-graph/index.html) associé au cours sur [les patrons de conception et principes de refactoring](http://mborne.github.io/cours-patron-conception/).
@@ -58,3 +60,6 @@ java -Dgraph.path=path/to/troncon_route.shp -jar target/tp-refactoring-graph-0.1
 * Génération de rapport de couverture : `mvn clean package jacoco:report` (voir target/site/jacoco/index.html)
 * [VisualVM](https://visualvm.github.io/) pourra vous aider pour les optimisations.
 
+## Licence
+
+[MIT](LICENSE)
