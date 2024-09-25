@@ -40,7 +40,7 @@ public class DijkstraPathFinder {
 		Vertex current;
 		while ((current = findNextVertex()) != null) {
 			visit(current);
-			if (destination.getReachingEdge() != null) {
+			if (destination.getCost() != Double.POSITIVE_INFINITY ) {
 				log.info("findPath({},{}) : path found", origin, destination);
 				return buildPath(destination);
 			}
@@ -88,11 +88,13 @@ public class DijkstraPathFinder {
 	private List<Edge> buildPath(Vertex target) {
 		List<Edge> result = new ArrayList<>();
 
-		Edge current = target.getReachingEdge();
-		do {
+		for ( 
+			Edge current = target.getReachingEdge();
+			current != null;
+			current = current.getSource().getReachingEdge()
+		){
 			result.add(current);
-			current = current.getSource().getReachingEdge();
-		} while (current != null);
+		}
 
 		Collections.reverse(result);
 		return result;
