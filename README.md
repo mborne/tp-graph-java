@@ -4,7 +4,7 @@
 
 ## Description
 
-[tp-refactoring-graph](http://mborne.github.io/cours-patron-conception/annexe/tp-graph/index.html) associé au cours sur [les patrons de conception et principes de refactoring](http://mborne.github.io/cours-patron-conception/).
+Projet de départ pour le [TP - Refactoring de traitement de graphe (version JAVA)](https://github.com/mborne/cours-patron-conception/blob/archive-java/src/annexe/tp-graph/index.md#tp---refactoring-de-traitement-de-graphe) associé au cours sur [les patrons de conception et principes de refactoring](https://mborne.github.io/cours-patron-conception/).
 
 ## Principes
 
