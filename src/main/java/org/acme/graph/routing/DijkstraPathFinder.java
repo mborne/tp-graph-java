@@ -136,6 +136,7 @@ public class DijkstraPathFinder {
 			// sommet le plus proche de la source?
 			if (vertex.getCost() < minCost) {
 				result = vertex;
+				minCost = vertex.getCost();
 			}
 		}
 		return result;
