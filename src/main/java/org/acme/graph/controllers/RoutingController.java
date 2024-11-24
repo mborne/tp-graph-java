@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FindPathController {
+public class RoutingController {
 
 	@Autowired
 	private Graph graph;
 
-	@GetMapping(value = "/find-path")
+	@GetMapping(value = "/api/route")
 	public List<Edge> findPath(
 		@RequestParam(value = "origin", required = true)
 		String originId,

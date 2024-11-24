@@ -1,14 +1,14 @@
-# tp-refactoring-graph
-
-**ATTENTION** : Ce dépôt est une **archive correspondant à la version Java du TP**.
+# tp-graph-java
 
 ## Description
 
-Projet de départ pour le [TP - Refactoring de traitement de graphe (version JAVA)](https://github.com/mborne/cours-patron-conception/blob/archive-java/src/annexe/tp-graph/index.md#tp---refactoring-de-traitement-de-graphe) associé au cours sur [les patrons de conception et principes de refactoring](https://mborne.github.io/cours-patron-conception/).
+**reprise en cours pour sujet de TP spring-boot**
+
+~~Projet de départ pour le [TP - Refactoring de traitement de graphe (version JAVA)](https://github.com/mborne/cours-patron-conception/blob/archive-java/src/annexe/tp-graph/index.md#tp---refactoring-de-traitement-de-graphe) associé au cours sur [les patrons de conception et principes de refactoring](https://mborne.github.io/cours-patron-conception/)~~.
 
 ## Principes
 
-* La branche par défaut ("initial") permet de récupérer un projet maven pour commencer à travailler
+* La branche par défaut ("main") permet de récupérer un projet maven pour commencer à travailler
 * Les branches 0.1, 0.2, etc. correspondront aux corrections pour chaque question du TP
 * junit et mockito sont présents pour permettre l'écriture de tests unitaires
 
@@ -16,7 +16,7 @@ Projet de départ pour le [TP - Refactoring de traitement de graphe (version JAV
 
 La classe [Application](src/main/java/org/acme/graph/Application.java) est le point d'entrée de l'application. La méthode `main` assure le démarrage de l'API implémentée à l'aide de [spring-boot](https://spring.io/guides/gs/spring-boot/).
 
-Le code est organisé en package :
+Le code de l'API est organisé en package dans `src/` :
 
 * `model` : Modélisation des données de l'application
 * ̀`io` : Lecture de graphes
@@ -25,12 +25,14 @@ Le code est organisé en package :
 * `config` : Configuration de l'application spring (initialisation des beans)
 * `errors` : Gestion des erreurs (exceptions personnalisées)
 
+
 ## Utilisation
 
 ### Avec eclipse
 
 * Lancer l'application "Application.java".
-* Ouvrir http://localhost:8080/find-path?origin=1&destination=9557 dans un navigateur
+* Ouvrir http://localhost:8080/api/route?origin=1&destination=9557 dans un navigateur
+* Ouvrir http://localhost:8080/ pour un démonstrateur
 
 ### En ligne de commande
 
@@ -41,8 +43,8 @@ mvn clean package
 ```
 
 * Démarrer l'API : `mvn spring-boot:run`
-
-* Tester l'API : `curl "http://localhost:8080/find-path?origin=1&destination=9557"`
+* Tester l'API : `curl "http://localhost:8080/api/route?origin=1&destination=9557"`
+* Ouvrir le démonstrateur : `http://localhost:8080`
 
 ## Données utilisées
 
@@ -53,6 +55,23 @@ Il est possible de charger un autre fichier à l'aide de l'option `graph.path` :
 ```bash
 java -Dgraph.path=path/to/troncon_route.shp -jar target/tp-refactoring-graph-0.1.0-SNAPSHOT.jar
 ```
+
+## Démonstrateur
+
+Le code du démonstrateur est dans le dossier `front/`. En cas de changement dans ce dossier, il convient de reconstruire `src/main/resources/public` à l'aide des commandes suivantes :
+
+```bash
+# installation des dépendances
+npm install
+# construction du front
+npm run build
+```
+
+Remarques :
+
+* [NodeJS](https://nodejs.org/en) doit être installé en amont.
+* Voir [package.json](package.json) et [vite.config.js](vite.config.js) (adapté à partir de [OpenLayers + Vite](https://github.com/openlayers/ol-vite?tab=readme-ov-file#openlayers--vite))
+
 
 ## Notes
 

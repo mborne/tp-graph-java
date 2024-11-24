@@ -1,7 +1,12 @@
 package org.acme.graph.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.n52.jackson.datatype.jts.GeometrySerializer;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * 
@@ -20,6 +25,7 @@ public class Vertex {
 	/**
 	 * Position du sommet
 	 */
+	@JsonIgnore
 	private Coordinate coordinate;
 
 	/**
@@ -79,6 +85,12 @@ public class Vertex {
 
 	public void setVisited(boolean visited) {
 		this.visited = visited;
+	}
+
+	@JsonSerialize(using = GeometrySerializer.class)
+	public Point getGeometry() {
+		GeometryFactory gf = new GeometryFactory();
+		return gf.createPoint(this.coordinate);
 	}
 
 	@Override

@@ -1,0 +1,18 @@
+{
+  "name": "tp-graph-java",
+  "version": "1.0.0",
+  "description": "Simple OpenLayers viewer",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.11"
+  },
+  "dependencies": {
+    "ol": "latest",
+    "proj4": "^2.15.0"
+  }
+}

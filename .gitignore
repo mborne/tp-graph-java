@@ -5,3 +5,5 @@
 /.vscode/
 
 /.apt_generated/
+
+/node_modules/

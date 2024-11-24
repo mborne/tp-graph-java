@@ -8,7 +8,7 @@ import com.github.ulisesbocchio.jar.resources.JarResourceLoader;
 /**
  * Application spring permettant de démarrer l'API
  * 
- * http://localhost:8080/find-path?origin=1&destination=9557
+ * http://localhost:8080/api/route?origin=1&destination=9557
  * 
  * @author MBorne
  */
