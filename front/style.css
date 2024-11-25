@@ -4,9 +4,26 @@ html, body {
   margin: 0;
   height: 100%;
 }
+
 #map {
   position: absolute;
-  top: 0;
   bottom: 0;
+  top: 0;
   width: 100%;
+}
+
+#logger {
+  position: absolute;
+  padding: 5px;
+  height: 100px;
+  bottom: 10px;
+  width: 80%;
+  left: 10%;
+  background-color: lightgray;
+  font-size: 1.4em;
+  overflow-y: auto;
+}
+
+.ol-active button {
+  background-color: lightgray;
 }

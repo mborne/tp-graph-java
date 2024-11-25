@@ -5,12 +5,17 @@ import OSM from 'ol/source/OSM';
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
-import { fromLonLat } from 'ol/proj';
 
+import {defaults as defaultControls} from 'ol/control';
+
+import { fromLonLat } from 'ol/proj';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
-import { RouteStyle } from './styles/RouteStyle';
+
 import { VertexStyle } from './styles/VertexStyle';
+import { FindRouteControl } from './control/FindRouteControl';
+import { logger } from './logger';
+
 
 /*
  * Add support for Lambert 93 (EPSG:2154)
@@ -59,36 +64,26 @@ const verticesSource = new VectorSource({
 });
 
 const verticesLayer = new VectorLayer({
-  source: verticesSource
-})
-
-/**
- * Création d'une couche pour l'affichage du résultat
- */
-const routeSource = new VectorSource({
-  format: new GeoJSON({
-    dataProjection: 'EPSG:2154',
-    featureProjection: 'EPSG:3857'
-  })
+  className: 'VertexLayer',
+  source: verticesSource,
+  properties: {
+    name: 'vertices'
+  }
 });
-const routeLayer = new VectorLayer({
-  source: routeSource,
-  features: [],
-  style: new RouteStyle()
-});
-
 
 /*
  * Création d'une carte OpenLayers
  */
 const map = new Map({
   target: 'map',
+  controls: defaultControls().extend([
+    (new FindRouteControl()).setActive(true)
+  ]),
   layers: [
     new TileLayer({
       source: new OSM()
     }),
-    verticesLayer,
-    routeLayer
+    verticesLayer
   ],
   view: new View({
     center: fromLonLat([2.0, 47.0]),
@@ -107,58 +102,5 @@ verticesLayer.getSource().on("featuresloadend", function () {
   map.getView().fit(bboxFeatures);
 });
 
-
-/**
- * Gestion des clics sur la couche des sommets pour calcul
- * du plus court chemin
- */
-const routeVertices = [];
-map.on('singleclick', function (e) {
-  const features = map.getFeaturesAtPixel(e.pixel,{
-    layerFilter: (layer) => {
-      return layer === verticesLayer
-    }
-  });
-  if ( features.length == 0 ){
-    console.log('no vertex at location');
-    return;
-  }
-  // keep first
-  const vertexId = features[0].get('id');
-  console.log(`clicked on ${vertexId}`);
-  routeVertices.push(vertexId);
-  if ( routeVertices.length == 2 ){
-    const origin = routeVertices[0];
-    const destination = routeVertices[1];
-    // reset routeVertices
-    routeVertices.length = 0;
-
-    const routeUrl = `/api/route?origin=${origin}&destination=${destination}`;
-    console.log(`GET ${routeUrl} ...`);
-    fetch(routeUrl)
-      .then((res) => res.json())
-      .then((edges) => {
-        console.log(edges);
-        const features = edges.map((edge) => {
-          return {
-            type: 'Feature',
-            properties: {
-              id: edge.id,
-              cost: edge.cost
-            },
-            geometry: edge.geometry
-          }
-        });
-        return {
-          type: 'FeatureCollection',
-          features: features
-        }
-      })
-    .then((featureCollection)=>{
-      console.log(`found route with ${featureCollection.features.length} edge(s)`);
-      routeSource.clear();
-      routeSource.addFeatures(routeSource.getFormat().readFeatures(featureCollection));
-    });
-  }
-});
+  
 

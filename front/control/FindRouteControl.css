@@ -1,0 +1,12 @@
+.find-route-control {
+    top: 65px;
+    left: .5em;
+}
+
+.ol-touch .find-route-control {
+    top: 80px;
+}
+
+.find-route-control .ol-unselectable {
+    background-color: transparent !important;
+}
