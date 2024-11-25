@@ -2,15 +2,13 @@
 
 ## Description
 
-**reprise en cours pour sujet de TP spring-boot**
-
-~~Projet de départ pour le [TP - Refactoring de traitement de graphe (version JAVA)](https://github.com/mborne/cours-patron-conception/blob/archive-java/src/annexe/tp-graph/index.md#tp---refactoring-de-traitement-de-graphe) associé au cours sur [les patrons de conception et principes de refactoring](https://mborne.github.io/cours-patron-conception/)~~.
+Projet de départ pour le [TP - Refactoring de traitement de graphe (version JAVA)](https://mborne.github.io/cours-patron-conception/annexe/tp-graph-java/index.html) associé au cours sur [les patrons de conception et principes de refactoring](https://mborne.github.io/cours-patron-conception/).
 
 ## Principes
 
 * La branche par défaut ("main") permet de récupérer un projet maven pour commencer à travailler
 * Les branches 0.1, 0.2, etc. correspondront aux corrections pour chaque question du TP
-* junit et mockito sont présents pour permettre l'écriture de tests unitaires
+* junit et mockito sont utilisés pour les tests unitaires et fonctionnels
 
 ## Organisation du code
 
@@ -58,7 +56,7 @@ java -Dgraph.path=path/to/troncon_route.shp -jar target/tp-refactoring-graph-0.1
 
 ## Démonstrateur
 
-Le code du démonstrateur est dans le dossier `front/`. En cas de changement dans ce dossier, il convient de reconstruire `src/main/resources/public` à l'aide des commandes suivantes :
+Pour adapter le code démonstrateur (**dernière question**), le code correspondant est dans le dossier `front/`. En cas de changement dans ce dossier, il convient de reconstruire `src/main/resources/public` qui est servi par spring à l'aide des commandes suivantes :
 
 ```bash
 # installation des dépendances
@@ -69,7 +67,7 @@ npm run build
 
 Remarques :
 
-* [NodeJS](https://nodejs.org/en) doit être installé en amont.
+* [NodeJS](https://nodejs.org/en) doit être installé en amont de l'exécution de ces commandes.
 * Voir [package.json](package.json) et [vite.config.js](vite.config.js) (adapté à partir de [OpenLayers + Vite](https://github.com/openlayers/ol-vite?tab=readme-ov-file#openlayers--vite))
 
 
